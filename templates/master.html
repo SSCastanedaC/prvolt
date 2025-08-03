@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>PR Volt | Leads</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 550px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      background-color: #dfe6e9;
+      height: 100vh;
+    }
+        
+    /* On small screens, set height to 'auto' for the grid */
+    @media screen and (max-width: 767px) {
+      .row.content {height: auto;} 
+    }
+
+    #snackbar-container {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        max-width: 90%;
+        width: 400px;
+    }
+
+    .snackbar {
+        background-color: #333;
+        color: #fff;
+        padding: 14px 24px;
+        border-radius: 4px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        font-size: 16px;
+        position: relative;
+        opacity: 0.95;
+        animation: slideUp 0.5s ease forwards;
+    }
+
+    .snackbar.success {
+        background-color: #4caf50; /* Green */
+    }
+
+    .snackbar.error {
+        background-color: #f44336; /* Red */
+    }
+  </style>
+</head>
+<body>
+
+{% if messages %}
+<div id="snackbar-container">
+    {% for message in messages %}
+    <div class="snackbar {{ message.tags }}">
+        {{ message }}
+        <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+<nav class="navbar navbar-inverse visible-xs">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">PR Volt - Leads</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <div class="row content">
+    <div class="col-sm-3 sidenav hidden-xs">
+      <h2>PR Volt - Leads</h2>
+    </div>
+    <br>
+    
+    <div class="col-sm-9">
+      <div class="well">
+        <h4>{% block title %}{% endblock title %}</h4>
+        <hr />
+        {% block content %}
+        {% endblock content %}
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

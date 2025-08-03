@@ -1,0 +1,29 @@
+{% extends 'master.html' %}
+{% block title %}All Leads{% endblock title %}
+{% block content %}
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Options</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for lead in leads %}
+        <tr>
+            <td>{{lead.id}}</td>
+            <td>{{lead.first_name}}</td>
+            <td>{{lead.last_name}}</td>
+            <td>{{lead.email}}</td>
+            <td>
+                <a href="{% url 'leads:detail' lead.id %}">Details</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a class="btn btn-info" href="{% url 'leads:create' %}">New</a>
+{% endblock content %}

@@ -1,0 +1,29 @@
+{% extends 'master.html' %}
+{% block title %}Create Lead{% endblock title %}
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    <div class="form-group">
+    <label>Email</label>
+    <input class="form-control" name="email">
+    </div>
+    <div class="form-group">
+    <label>First Name</label>
+    <input class="form-control" name="first_name">
+    </div>
+    <div class="form-group">
+    <label>Last Name</label>
+    <input class="form-control" name="last_name">
+    </div>
+    <div class="form-group">
+    <label>Country</label>
+    <select class="form-control" name="country_code">
+        {% for country in countries %}
+        <option value="{{country.code}}">{{country.name}}</option>
+        {% endfor %}
+    </select>
+</div>
+    <a href="{% url 'leads:list'%}" class="btn btn-info">Go back</a>
+    <button class="btn btn-success">Create</button>
+</form>
+{% endblock content %}

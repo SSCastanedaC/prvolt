@@ -1,0 +1,20 @@
+{% extends 'master.html' %}
+{% block title %}Lead Detail{% endblock title %}
+{% block content %}
+<div class="container">
+    {% for key, value in lead.items %}
+    <div class="col-sm-3">
+    <div class="panel panel-default">
+        <div class="panel-heading"><b>{{key}}</b></div>
+        <div class="panel-body">{{value}}</div>
+    </div>
+</div>
+    {% endfor %}
+  </div>
+
+<form method="post">
+    {% csrf_token %}
+    <a href="{% url 'leads:list'%}" class="btn btn-info">Go back</a>
+    <button class="btn btn-danger">Delete</button>
+</form>
+{% endblock content %}
